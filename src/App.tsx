@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useState } from "react";
 import './App.css';
 var txt = require("./first-names.txt")
 const App = () => {
-
+  let [isLoading, setIsLoading] = useState(false)
   const getOccuurances = () => {
+    setIsLoading(true)
     fetch(window.location.origin + txt)
       .then((r) => r.text())
       .then(text => {
@@ -27,19 +28,23 @@ const App = () => {
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
+            setIsLoading(false)
           });
       })
 
   }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <section className="p75 my-account">
-          <button className="button" onClick={getOccuurances}>Click here to download Occuurances</button>
-        </section >
-      </header>
+    <div>
+      <div className="App">
+        <header className="App-header">
+          {!isLoading ? (<section className="p75 my-account">
+            <button className="button" onClick={getOccuurances}>Click here to download Occuurances</button>
+          </section >) : (<div>Loading...</div>)}
+        </header>
+      </div>
     </div>
+
   );
 }
 
