@@ -39,7 +39,7 @@ const App = () => {
       <div className="App">
         <header className="App-header">
           {!isLoading ? (<section className="p75 my-account">
-            <button className="button" onClick={getOccuurances}>Click here to download Occuurances</button>
+            <button className="button" onClick={getOccuurances}>Click here to download occurrence</button>
           </section >) : (<div>Loading...</div>)}
         </header>
       </div>
